@@ -1,0 +1,36 @@
+USE [test]
+GO
+/****** Object:  StoredProcedure [dbo].[zspForTest]    Script Date: 2021/4/23 上午 11:41:33 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+/**********************************************************************************
+**Date: 20210423 
+**Description: 練習SP
+**Inputs: @name(名字)
+**Syntax: exec [zspForTest] 'Mike'
+**********************************************************************************/
+ALTER PROCEDURE [dbo].[zspForTest] 
+		
+		@name  nvarchar(20)
+		
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+	DECLARE  @TEMP AS TABLE
+	(
+	   ID INT
+	   ,NAME NVARCHAR(2000)
+	)
+
+	INSERT INTO @TEMP VALUES(1, 'Mike')
+	INSERT INTO @TEMP VALUES(2, 'Risa')
+	INSERT INTO @TEMP VALUES(3, 'Ae')
+	INSERT INTO @TEMP VALUES(4, 'Zas')
+
+	SELECT * FROM @TEMP WHERE NAME LIKE + '%' + @name + '%' 
+	
+END
